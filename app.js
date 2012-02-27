@@ -73,7 +73,9 @@ function parseEpub(filename, res){
     json_book.filename = filename;
     console.log("METADATA:\n");
     console.log(epub.metadata.title);
-    json_book.title = epub.metadata.title;
+    // json_book.title = epub.metadata.title; -- use JSON file title instead
+    json_book.title = filename.replace(".epub", ".json").replace("./public/","");
+
     console.log(epub.metadata.creator);
     json_book.subtitle = epub.metadata.creator;
     json_book.content = [];
@@ -125,8 +127,13 @@ var list_books = function(req, res){
     filenames2 = filenames.filter(function(str) {
             return checkSuffix(str, ".json");
 	});
-    console.log(filenames2);
-    endMessage(res, JSON.stringify(filenames2));
+    ans = [];
+    for (i = 0; i< filenames2.length; i++) {
+	ans.push({"title": filenames2[i]});
+    }
+
+    console.log(ans);
+    endMessage(res, JSON.stringify(ans));
 }
 
 
@@ -141,7 +148,6 @@ var get_book = function(filename, res){
 	res.sendfile("./public/" + filename);
     } else if (checkSuffix(filename, ".epub")) {
       parseEpub("./public/" + filename, res);
-      //endMessage(res, "ok");
     } else {
       endMessage(res, "Not an *.epub filename");
     }

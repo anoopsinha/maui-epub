@@ -4,6 +4,7 @@
     "dependencies":{
       "express":"",
       "qs":"",
+      "formidable":"",
       "mime":"",
       "sax":"",
       "connect":"",
