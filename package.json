@@ -3,6 +3,10 @@
     "version":"0.0.1",
     "dependencies":{
       "express":"",
+      "qs":"",
+      "mime":"",
+      "sax":"",
+      "connect":"",
       "epub":"",
       "zipfile":"",
       "xml2js":""
