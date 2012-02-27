@@ -1,0 +1,10 @@
+{
+    "name":"basic-epub",
+    "version":"0.0.1",
+    "dependencies":{
+      "express":"",
+      "epub":"",
+      "zipfile":"",
+      "xml2js":""
+    }
+}
