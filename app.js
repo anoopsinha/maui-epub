@@ -110,7 +110,7 @@ function endMessage(res, msg) {
 }
 
 function endJSONMessage(res, msg) {
-    res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});                         
+    res.writeHead(200, { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' });
     res.write(msg);
     res.end('\n');
 }
@@ -133,7 +133,7 @@ var list_books = function(req, res){
     }
 
     console.log(ans);
-    endMessage(res, JSON.stringify(ans));
+    endJSONMessage(res, JSON.stringify(ans));
 }
 
 
@@ -145,7 +145,9 @@ function checkSuffix(str, suffix) {
 var get_book = function(filename, res){
     console.log(filename);
     if (checkSuffix(filename, ".json")) {
+        res.header('Access-Control-Allow-Origin', '*' );
 	res.sendfile("./public/" + filename);
+	//res.end("\n");
     } else if (checkSuffix(filename, ".epub")) {
       parseEpub("./public/" + filename, res);
     } else {
