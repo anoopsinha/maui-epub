@@ -45,7 +45,7 @@ function getChapterWrapper(title, number, id, epub, json_book, res) {
               return;
             }
 
-	    chapter = "CHAPTER #" + number + " :" + JSON.stringify(title);
+	    chapter = JSON.stringify(title);
             console.log(chapter);
 	    story = textOnly(data);
             console.log(story); 
