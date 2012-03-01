@@ -26,7 +26,7 @@ function textOnly(html) {
 
 
 function saveJSON(filename, json) {
-    filename = filename.replace(".epub", ".json");
+    filename = "./public/" + filename.replace(".epub", ".json");
     fs.writeFile(filename, json, function(err) {
 	    if(err) {
 		console.log(err);
@@ -72,7 +72,7 @@ function parseEpub(filename, res){
     json_book = {};
     json_book.filename = filename;
     console.log("METADATA:\n");
-    console.log(epub.metadata.title);
+    console.log(epub.metadata);
     json_book.title = epub.metadata.title; 
     json_book.filename = filename.replace(".epub", ".json").replace("./public/","");
 
