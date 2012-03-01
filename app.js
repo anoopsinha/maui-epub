@@ -52,7 +52,7 @@ function getChapterWrapper(title, number, id, epub, json_book, res) {
 	    json_book.content.push({"chapter": chapter, "story": story});
 	    if (number == epub.toc.length) {
    	      console.log(JSON.stringify(json_book));
-	      ans = {"title": json_book.title, "book": json_book};
+	      ans = {"title": json_book.filename, "book": json_book};
               endJSONMessage(res, JSON.stringify(ans));
 	      saveJSON(json_book.filename, JSON.stringify(ans));
 	    } 
@@ -73,8 +73,8 @@ function parseEpub(filename, res){
     json_book.filename = filename;
     console.log("METADATA:\n");
     console.log(epub.metadata.title);
-    // json_book.title = epub.metadata.title; -- use JSON file title instead
-    json_book.title = filename.replace(".epub", ".json").replace("./public/","");
+    json_book.title = epub.metadata.title; 
+    json_book.filename = filename.replace(".epub", ".json").replace("./public/","");
 
     console.log(epub.metadata.creator);
     json_book.subtitle = epub.metadata.creator;
